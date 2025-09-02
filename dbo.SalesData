@@ -1,0 +1,7 @@
+CREATE TABLE dbo.SalesData (
+    Id INT PRIMARY KEY NOT NULL,
+    ProductName NVARCHAR(255) NULL,
+    Amount DECIMAL(10, 2) NULL,
+    Region NVARCHAR(255) NULL,
+    LastModifiedDate DATETIME NULL
+);
