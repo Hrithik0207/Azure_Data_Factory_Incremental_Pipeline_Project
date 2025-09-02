@@ -1,0 +1,21 @@
+CREATE PROCEDURE sp_UpdateWatermark
+    @TableName NVARCHAR(100),
+    @NewWatermark DATETIME
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF EXISTS (
+        SELECT 1 FROM WatermarkControl WHERE TableName = @TableName
+    )
+    BEGIN
+        UPDATE WatermarkControl
+        SET LastLoadedDate = @NewWatermark
+        WHERE TableName = @TableName;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO WatermarkControl (TableName, LastLoadedDate)
+        VALUES (@TableName, @NewWatermark);
+    END
+END;
