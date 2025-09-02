@@ -1,0 +1,5 @@
+CREATE PROCEDURE sp_ClearStagingTable
+AS
+BEGIN
+    DELETE FROM [stg].[SalesData];
+END;
